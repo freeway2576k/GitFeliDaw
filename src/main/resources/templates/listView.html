@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lista de Números Aleatorios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Random Number List</h1>
+<div th:if="${totalAmount > 0}">
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="number : ${numberList}">
+                <td th:text="${number}" th:classappend="${number > 50} ? 'green' : 'red'">Número</td>
+                <td>
+                    <a th:href="@{/delete/{id}(id=${number})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    Total numbers: <span th:text="${totalAmount}">0</span><br/>
+
+    <a th:href="@{/new}">Generate New Number</a>
+</body>
+</html>
